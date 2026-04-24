@@ -1,0 +1,416 @@
+/* videoComponent.module.css — Google Meet style, dark Navy + Cyan */
+
+/* ========================= */
+/* LOBBY                     */
+/* ========================= */
+
+.lobbyWrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: var(--bg-base);
+  position: relative;
+}
+
+.lobbyCard {
+  width: 100%;
+  max-width: 460px;
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  position: relative; z-index: 1;
+  animation: slideUp 0.5s ease both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lobbyVideo {
+  width: 100%; height: 250px;
+  margin-top: 20px;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #000;
+  transform: scaleX(-1);
+  border: 1px solid var(--border);
+}
+
+/* ========================= */
+/* IN-CALL CONTAINER         */
+/* ========================= */
+
+.meetVideoContainer {
+  width: 100%;
+  height: 100vh;
+  background: #07101f;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ========================= */
+/* TOP BAR                   */
+/* ========================= */
+
+.topBar {
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(5, 11, 24, 0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.topBarLeft, .topBarCenter, .topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topBarCenter { flex: 1; justify-content: center; }
+.topBarRight  { justify-content: flex-end; }
+
+.logoSmall {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), var(--indigo));
+  display: grid; place-items: center;
+}
+
+.recordingIndicator {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(0,227,150,0.1);
+  border: 1px solid rgba(0,227,150,0.2);
+  padding: 4px 10px; border-radius: 20px;
+  color: var(--success); font-size: 0.78rem; font-weight: 600;
+}
+
+/* ========================= */
+/* MAIN AREA                 */
+/* ========================= */
+
+.mainArea {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  transition: margin-right 0.25s ease;
+}
+
+/* ========================= */
+/* CONFERENCE GRID           */
+/* ========================= */
+
+.conferenceView {
+  width: 100%;
+  height: 100%;
+  padding: 16px 16px 90px;
+  display: grid;
+  gap: 12px;
+  overflow-y: auto;
+  align-content: start;
+}
+
+.remoteCard {
+  background: #0e1a2e;
+  border-radius: 18px;
+  overflow: hidden;
+  min-height: 280px;
+  border: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+}
+
+.remoteLabel {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(5,11,24,0.7);
+  backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.hostTag {
+  color: var(--cyan);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.hostOverlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.remoteCard:hover .hostOverlay { opacity: 1; }
+
+.waitingBox {
+  grid-column: 1 / -1;
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed rgba(255,255,255,0.06);
+}
+
+/* ========================= */
+/* SELF VIDEO PIP            */
+/* ========================= */
+
+.selfVideoWrapper {
+  position: absolute;
+  bottom: 90px;
+  right: 16px;
+  width: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(0,210,255,0.4);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  z-index: 20;
+}
+
+.meetUserVideo {
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  background: #000;
+  transform: scaleX(-1);
+  display: block;
+}
+
+.selfLabel {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 5px 10px;
+  background: linear-gradient(to top, rgba(5,11,24,0.9), transparent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ========================= */
+/* SIDEBAR                   */
+/* ========================= */
+
+.sidebar {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 360px;
+  background: #0a1428;
+  border-left: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  animation: slideInRight 0.25s ease;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(30px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.sidebarHeader {
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+/* ── Chat ── */
+.chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.chatBubble {
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  max-width: 90%;
+  animation: fadeInMsg 0.2s ease;
+}
+.chatBubbleMine {
+  background: rgba(0,210,255,0.1);
+  margin-left: auto;
+  border: 1px solid rgba(0,210,255,0.15);
+}
+
+@keyframes fadeInMsg {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chatSender { color: var(--cyan); font-size: 0.78rem; font-weight: 600; margin-bottom: 3px; }
+.chatText   { color: var(--text-primary); font-size: 0.875rem; line-height: 1.5; }
+
+.chatInput {
+  padding: 12px 14px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Participants ── */
+.participantList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.participantItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+.participantItem:hover { background: rgba(255,255,255,0.03); }
+
+/* ========================= */
+/* CONTROL BAR               */
+/* ========================= */
+
+.controlBar {
+  height: 80px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(5,11,24,0.95);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.controlLeft, .controlRight {
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.controlCenter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.controlBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.controlBtn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.controlBtn svg { font-size: 1.3rem; }
+
+.controlBtnOff {
+  background: rgba(255,69,96,0.15);
+  border-color: rgba(255,69,96,0.25);
+  color: var(--danger);
+}
+.controlBtnOff:hover {
+  background: rgba(255,69,96,0.25);
+  border-color: rgba(255,69,96,0.4);
+}
+
+.controlBtnActive {
+  background: rgba(0,210,255,0.15);
+  border-color: rgba(0,210,255,0.3);
+  color: var(--cyan);
+}
+
+.controlBtnEnd {
+  background: var(--danger) !important;
+  border-color: var(--danger) !important;
+  color: white !important;
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 0 20px rgba(255,69,96,0.3);
+}
+.controlBtnEnd:hover {
+  box-shadow: 0 0 35px rgba(255,69,96,0.5) !important;
+  transform: scale(1.05);
+}
+
+.countBadge, .mutedBadge {
+  position: absolute;
+  top: -5px; right: -5px;
+  background: var(--danger);
+  color: white; font-size: 0.65rem; font-weight: 700;
+  padding: 2px 5px; border-radius: 10px; min-width: 18px; text-align: center;
+}
+
+.mutedBadge {
+  background: var(--warning); color: #050b18;
+  top: auto; bottom: -5px; right: -5px;
+  font-size: 0.6rem;
+}
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .sidebar { width: 100%; }
+
+  .selfVideoWrapper {
+    width: 130px;
+    bottom: 90px;
+    right: 10px;
+  }
+  .meetUserVideo { height: 90px; }
+
+  .controlBtn { width: 46px; height: 46px; border-radius: 12px; }
+  .controlBtnEnd { width: 52px !important; height: 52px !important; }
+  .controlCenter { gap: 7px; }
+
+  .conferenceView { padding: 10px 10px 80px; }
+
+  .topBar { padding: 0 12px; }
+  .topBarCenter { display: none; }
+}
+
+@media (max-width: 480px) {
+  .lobbyCard { padding: 22px; }
+  .lobbyVideo { height: 200px; }
+  .selfVideoWrapper { width: 110px; }
+  .meetUserVideo { height: 76px; }
+}

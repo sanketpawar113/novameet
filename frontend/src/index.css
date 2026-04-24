@@ -1,0 +1,103 @@
+/* src/index.css */
+/* CLEAN GLOBAL RESET + PERFORMANCE CSS */
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+textarea {
+  resize: none;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Better focus for accessibility */
+:focus-visible {
+  outline: 2px solid #6c63ff;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #6c63ff;
+  color: white;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
